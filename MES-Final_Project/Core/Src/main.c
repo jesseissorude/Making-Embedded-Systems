@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "console.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -72,7 +72,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  ConsoleInit();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -92,6 +92,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	ConsoleProcess();
+
 	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
 	HAL_Delay(500);
     /* USER CODE END WHILE */
