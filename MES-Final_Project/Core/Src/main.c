@@ -92,7 +92,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	// Adding a user comment here to test GitHub connection
+	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+	HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
