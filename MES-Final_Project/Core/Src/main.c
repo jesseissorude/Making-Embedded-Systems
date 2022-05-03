@@ -92,6 +92,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	// Adding a user comment here to test GitHub connection
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
