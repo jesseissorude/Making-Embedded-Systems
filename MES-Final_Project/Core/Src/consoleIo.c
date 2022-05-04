@@ -2,17 +2,11 @@
 // In an embedded system, this might interface to a UART driver.
 
 #include "consoleIo.h"
+#include "stm32f4xx_hal.h"
 #include <stdio.h>
 
 //use the windows conio.h for kbhit, or a POSIX reproduction
-#ifdef _WIN32
 #include <conio.h>
-/* Removing the next two lines because I am on Windows and
- * won't be supporting other OS consoles.
-#else
-#include "conioCompat.h"
- */
-#endif
 
 static int getch_noblock() {
     if (_kbhit())
@@ -25,6 +19,7 @@ eConsoleError ConsoleIoInit(void)
 {
 	return CONSOLE_SUCCESS;
 }
+
 eConsoleError ConsoleIoReceive(uint8_t *buffer, const uint32_t bufferLength, uint32_t *readLength)
 {
 	uint32_t i = 0;
