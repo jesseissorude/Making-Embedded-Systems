@@ -97,6 +97,7 @@ int main(void)
 
   uint8_t data[] = "Hello world!\r\n";
   uint8_t data_it[] = "Transmit via interrupt is working fine.\r\n";
+
   ConsoleIoSendString("\r\nHello from main()!");
 
   while (1)
