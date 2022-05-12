@@ -7,7 +7,6 @@
 
 // Code from https://github.dev/zivkovic-msz/Making_Embedded_Systems_Course/tree/main/Assignments/Week_5
 extern UART_HandleTypeDef huart1;
-
 char readBuf[1];
 __IO ITStatus UartReady = SET;
 
@@ -48,6 +47,6 @@ eConsoleError ConsoleIoReceive(uint8_t *buffer, const uint32_t bufferLength, uin
 
 eConsoleError ConsoleIoSendString(const char *buffer)
 {
-	printf("%s", buffer);
-	return CONSOLE_SUCCESS;
+    printf("%s", buffer);
+    return CONSOLE_SUCCESS;
 }
