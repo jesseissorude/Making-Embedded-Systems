@@ -93,12 +93,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  char data[] = "Hello world!";
+  uint8_t data[] = "Hello world!\r\n";
 
   while (1)
   {
 
-  HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY);
 	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat every time I should have printed to console
 	HAL_Delay(250);
     /* USER CODE END WHILE */

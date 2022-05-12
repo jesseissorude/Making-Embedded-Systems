@@ -5,9 +5,9 @@
 #include "stm32f4xx_hal.h"
 #include <stdio.h>
 
+// Code from https://github.dev/zivkovic-msz/Making_Embedded_Systems_Course/tree/main/Assignments/Week_5
 extern UART_HandleTypeDef huart1;
 
-// Code from https://github.dev/zivkovic-msz/Making_Embedded_Systems_Course/tree/main/Assignments/Week_5
 char readBuf[1];
 __IO ITStatus UartReady = SET;
 

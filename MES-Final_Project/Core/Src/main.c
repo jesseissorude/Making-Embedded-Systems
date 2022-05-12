@@ -19,12 +19,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usart.h"
-#include "usb_host.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
 #include "console.h"
 #include "consoleIo.h"
 #include "consoleCommands.h"
@@ -52,8 +50,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void MX_USB_HOST_Process(void);
-
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -92,23 +88,27 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
-  MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  uint8_t data[] = "Hello world!\r\n";
+  uint8_t data_it[] = "Transmit via interrupt is working fine.\r\n";
   ConsoleIoSendString("\r\nHello from main()!");
+
   while (1)
   {
 	ConsoleProcess();
 
-	// Just a heartbeat to show I'm not stopped.  Also that I love you.
-	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-	HAL_Delay(500);
+	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY); // Test blocking transmit
+	HAL_UART_Transmit_IT(&huart1, data_it, sizeof(data_it));  // Test interrupt transmit
+	ConsoleIoSendString("\r\nHello from while()!"); // Test printf()
+	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat every time I should have printed to console
+	HAL_Delay(250);
     /* USER CODE END WHILE */
-    MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
   }
