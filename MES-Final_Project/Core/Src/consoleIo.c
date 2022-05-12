@@ -5,15 +5,25 @@
 #include "stm32f4xx_hal.h"
 #include <stdio.h>
 
-//use the windows conio.h for kbhit, or a POSIX reproduction
-#include <conio.h>
+extern UART_HandleTypeDef huart1;
+
+// Code from https://github.dev/zivkovic-msz/Making_Embedded_Systems_Course/tree/main/Assignments/Week_5
+char readBuf[1];
+__IO ITStatus UartReady = SET;
 
 static int getch_noblock() {
-    if (_kbhit())
-        return _getch();
-    else
-        return EOF;
+	int retVal = EOF;
+
+		if (UartReady == SET) {
+			UartReady = RESET;
+			HAL_UART_Receive_IT(&huart1, (uint8_t*)readBuf, 1);
+			HAL_UART_Transmit_IT(&huart1, (uint8_t*)readBuf, 1); // echo
+			retVal = *readBuf;
+		}
+
+	return retVal;
 }
+//
 
 eConsoleError ConsoleIoInit(void)
 {
@@ -41,4 +51,3 @@ eConsoleError ConsoleIoSendString(const char *buffer)
 	printf("%s", buffer);
 	return CONSOLE_SUCCESS;
 }
-
