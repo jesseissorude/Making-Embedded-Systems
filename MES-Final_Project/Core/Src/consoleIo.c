@@ -47,6 +47,12 @@ eConsoleError ConsoleIoReceive(uint8_t *buffer, const uint32_t bufferLength, uin
 
 eConsoleError ConsoleIoSendString(const char *buffer)
 {
-    printf("%s", buffer);
+	// code from szerpadiaz
+	uint32_t i = 0;
+	while (buffer[i] != '\0') {
+		HAL_UART_Transmit(&huart1,(uint8_t*)&buffer[i], 1, 10);
+		i++;
+	}
+	//
     return CONSOLE_SUCCESS;
 }

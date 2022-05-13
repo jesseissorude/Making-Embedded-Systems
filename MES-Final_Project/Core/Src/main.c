@@ -95,10 +95,10 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint8_t data[] = "Hello world!\r\n";
-  uint8_t data_it[] = "Transmit via interrupt is working fine.\r\n";
+  uint8_t data[] = "Hello world! HAL_UART_Transmit\r\n";
+  uint8_t data_it[] = "This one is HAL_UART_Transmit_IT\r\n";
 
-  ConsoleIoSendString("\r\nHello from main()!");
+  ConsoleIoSendString("Hello from main() via ConsoleIOSendString()!\r\n");
 
   while (1)
   {
@@ -106,7 +106,7 @@ int main(void)
 
 	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY); // Test blocking transmit
 	HAL_UART_Transmit_IT(&huart1, data_it, sizeof(data_it));  // Test interrupt transmit
-	ConsoleIoSendString("\r\nHello from while()!"); // Test printf()
+	ConsoleIoSendString("Hello from while() via ConsoleIOSendString()!\r\n"); // Test printf() port
 	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat every time I should have printed to console
 	HAL_Delay(250);
     /* USER CODE END WHILE */
