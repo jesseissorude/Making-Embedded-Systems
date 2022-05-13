@@ -75,7 +75,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  ConsoleInit();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -89,25 +88,26 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  ConsoleInit();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint8_t data[] = "Hello world! HAL_UART_Transmit\r\n";
-  uint8_t data_it[] = "This one is HAL_UART_Transmit_IT\r\n";
-
-  ConsoleIoSendString("Hello from main() via ConsoleIOSendString()!\r\n");
+//  uint8_t data[] = "Hello world! HAL_UART_Transmit\r\n";
+//  uint8_t data_it[] = "This one is HAL_UART_Transmit_IT\r\n";
+//
+//  ConsoleIoSendString("Hello from main() via ConsoleIOSendString()!\r\n");
 
   while (1)
   {
 	ConsoleProcess();
 
-	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY); // Test blocking transmit
-	HAL_UART_Transmit_IT(&huart1, data_it, sizeof(data_it));  // Test interrupt transmit
-	ConsoleIoSendString("Hello from while() via ConsoleIOSendString()!\r\n"); // Test printf() port
-	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat every time I should have printed to console
+//	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY); // Test blocking transmit
+//	HAL_UART_Transmit_IT(&huart1, data_it, sizeof(data_it));  // Test interrupt transmit
+//	ConsoleIoSendString("Hello from while() via ConsoleIoSendString()!\r\n"); // Test printf() port
+	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat
 	HAL_Delay(250);
     /* USER CODE END WHILE */
 

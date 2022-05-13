@@ -50,7 +50,7 @@ eConsoleError ConsoleIoSendString(const char *buffer)
 	// code from szerpadiaz
 	uint32_t i = 0;
 	while (buffer[i] != '\0') {
-		HAL_UART_Transmit(&huart1, (uint8_t *)&buffer[i], 1, HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart1, (uint8_t *)&buffer[i], 1, 10);
 		i++;
 	}
 	//
