@@ -107,8 +107,8 @@ int main(void)
 //	HAL_UART_Transmit(&huart1, data, sizeof(data), HAL_MAX_DELAY); // Test blocking transmit
 //	HAL_UART_Transmit_IT(&huart1, data_it, sizeof(data_it));  // Test interrupt transmit
 //	ConsoleIoSendString("Hello from while() via ConsoleIoSendString()!\r\n"); // Test printf() port
-	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heart beat
-	HAL_Delay(250);
+	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin); // Heartglow every time I've processed console
+//	HAL_Delay(250);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
